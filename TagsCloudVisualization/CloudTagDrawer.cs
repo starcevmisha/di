@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
+using TagsCloudVisualization.Helpers;
 
 namespace TagsCloudVisualization
 {
@@ -37,9 +38,11 @@ namespace TagsCloudVisualization
         {
             var frequencyDict = wordsAnalyzer.GetWordsFrequensy();
             var tagRectangles = tagMaker.MakeTagRectangles(frequencyDict);
-
-            var bitmap = DrawTagsOnBitmap(tagRectangles);
-            bitmapViewer.View(bitmap);
+            
+            var bitmap = Result.Of(() =>DrawTagsOnBitmap(tagRectangles));
+            if (!bitmap.IsSuccess)
+                Exiter.ExitWithError(bitmap.Error);
+            bitmapViewer.View(bitmap.Value);
         }
 
 
@@ -55,11 +58,26 @@ namespace TagsCloudVisualization
                 var selBrush = new SolidBrush(Color.Black);
                 foreach (var tag in tagRectangles)
                 {
+                    checkCoordinates(tag.Key);
                     g.DrawString(tag.Value.Item1, tag.Value.Item2, selBrush, tag.Key.X, tag.Key.Y);
                 }
             }
             return bitmap;
         }
+
+        private void checkCoordinates(Rectangle rectangle)
+        {
+            if (rectangle.Left < 0
+                || rectangle.Right > width
+                || rectangle.Top < 0
+                || rectangle.Bottom > height)
+                throw new Exception($"Too small image size. " +
+                                    $"Rectangle with coordinates x={rectangle.X}, y={rectangle.Y} " +
+                                    $"and size {rectangle.Size.Width}*{rectangle.Size.Height} " +
+                                    $"does not fit");
+        }
+                
+        
     }
     
 }

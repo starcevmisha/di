@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+ using TagsCloudVisualization.Helpers;
 
 namespace TagsCloudVisualization
 {
@@ -9,13 +10,15 @@ namespace TagsCloudVisualization
     {
         private readonly ICloudLayouter layouter;
         private readonly IFontSizeMaker fontSizeMaker;
-        private readonly string fontFamily;
+        private readonly string fontName;
 
-        public TagMaker(ICloudLayouter layouter, IFontSizeMaker fontSizeMaker, string fontFamily)
+        public TagMaker(ICloudLayouter layouter, 
+            IFontSizeMaker fontSizeMaker, 
+            string fontName)
         {
             this.layouter = layouter;
             this.fontSizeMaker = fontSizeMaker;
-            this.fontFamily = fontFamily;
+            this.fontName = fontName;
         }
 
         public Dictionary<Rectangle, (string, Font)> MakeTagRectangles(
@@ -23,10 +26,13 @@ namespace TagsCloudVisualization
         {
             var tagsDict = new Dictionary<Rectangle, (string, Font)>();
             var maxfreq = frequencyDict.Values.Max();
-
+            var fontFamily = Result.Of(() => new FontFamily(fontName));
+            if(!fontFamily.IsSuccess)
+                Exiter.ExitWithError(fontFamily.Error);
+            
             foreach (var word in frequencyDict)
             {
-                var font = new Font(new FontFamily(fontFamily), fontSizeMaker.GetFontSizeByFreq(maxfreq, word.Value),
+                var font = new Font(fontFamily.Value, fontSizeMaker.GetFontSizeByFreq(maxfreq, word.Value),
                     FontStyle.Regular, GraphicsUnit.Pixel);
                 var tagSize = TextRenderer.MeasureText(word.Key, font);
                 tagsDict.Add(layouter.PutNextRectangle(tagSize), (word.Key, font));

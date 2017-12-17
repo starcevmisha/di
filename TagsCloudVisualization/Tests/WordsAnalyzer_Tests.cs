@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows.Forms.VisualStyles;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
@@ -48,7 +49,6 @@ namespace TagsCloudVisualization
         [Test]
         public void GetWordsFrequency_IgnoreWordsFromStopList()
         {
-            
             mockBoringWord.Setup(x => x.IsBoringWord(It.IsAny<string>()))
                 .Returns((string s) => stopList.Contains(s));
             mockReader.Setup(x => x.ReadWords())
@@ -108,4 +108,7 @@ namespace TagsCloudVisualization
             actual.ShouldBeEquivalentTo(expected);
         }
     }
+    
+    
+
 }

@@ -81,7 +81,11 @@
     <Compile Include="BitmapViewerToForm.cs" />
     <Compile Include="BoringWordsDeterminer.cs" />
     <Compile Include="CircularCloudLayouter.cs" />
+    <Compile Include="Exiter.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="Helpers\Result.cs" />
+    <Compile Include="Helpers\Vector.cs" />
+    <Compile Include="Helpers\VectorExtensions.cs" />
     <Compile Include="IBitmapViewer.cs" />
     <Compile Include="IBoringWordDeterminer.cs" />
     <Compile Include="ICloudLayouter.cs" />
@@ -100,9 +104,7 @@
     <Compile Include="Tests\RectangleExtensions_Tests.cs" />
     <Compile Include="Tests\TagMaker_Tests.cs" />
     <Compile Include="Tests\WordsAnalyzer_Tests.cs" />
-    <Compile Include="Vector.cs" />
     <Compile Include="Tests\Vector_Tests.cs" />
-    <Compile Include="VectorExtensions.cs" />
     <Compile Include="WordsAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>

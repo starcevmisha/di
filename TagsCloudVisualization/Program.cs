@@ -19,7 +19,7 @@ namespace TagsCloudVisualization
             if(!Parser.Default.ParseArguments(args, options))
                 return;
             
-            var cloudCenter = new Point(400, 400);
+            var cloudCenter = new Point(options.Width/2, options.Height/2);
             
             var container = new ContainerBuilder();
             container.RegisterType<CircularCloudLayouter>()
@@ -33,7 +33,7 @@ namespace TagsCloudVisualization
             container.Register(b => new FontSizeMaker(options.MinFont, options.MaxFont))
                 .As<IFontSizeMaker>().SingleInstance();
             container.RegisterType<TagMaker>().As<ITagMaker>()
-                .WithParameter("fontFamily", options.Font);
+                .WithParameter("fontName", options.Font);
             container.RegisterType<BoringWordsDeterminer>()
                 .As<IBoringWordDeterminer>();
             container.RegisterType<BitmapViewerToForm>().As<IBitmapViewer>();
@@ -53,7 +53,6 @@ namespace TagsCloudVisualization
             var cloudtagDrawer = build.Resolve<CloudTagDrawer>();
 
             cloudtagDrawer.DrawTags();
-            //cloudtagDrawer.DrawTagsToFile();
 
         }
     }
