@@ -3,6 +3,7 @@ using System.Linq;
 using FluentAssertions;
 using NHunspell;
 using NUnit.Framework;
+using TagsCloudVisualization.Helpers;
 
 namespace TagsCloudVisualization
 {
@@ -27,13 +28,16 @@ namespace TagsCloudVisualization
 
         public Dictionary<string, int> GetWordsFrequensy()
         {
-            using (var hunspell = new Hunspell("dictionaries/en_US.aff", "dictionaries/en_US.dic"))
+            var hunspell = Result.Of(() => new Hunspell("dictionaries/en_US.aff", "dictionaries/en_US.dic"));
+            if (!hunspell.IsSuccess)
+                Exiter.ExitWithError(hunspell.Error);
+            using(hunspell.Value)
             {
                 return reader.ReadWords()
                     .Select(x=>
                     {
                         var word = x.ToLower();
-                        var stems = hunspell.Stem(word);
+                        var stems = hunspell.Value.Stem(word);
                         return stems.Any() ? stems[0] : word;
                     })
                     .Where(word => !boringWordDeterminer.IsBoringWord(word))
