@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using NUnit.Framework;
 using TagsCloudVisualization.Helpers;
 
 
@@ -23,13 +22,15 @@ namespace TagsCloudVisualization
         {
             var file = Result.Of(()=>File.ReadLines(filename));
             if (!file.IsSuccess)
+            {
                 exiter.ExitWithError(file.Error);
-            
+                return new List<string>();
+            }
+
             return file.Value
                 .SelectMany(line => line.Split(
                     new[] {' ', ',', '.', ':', ';', '!', '?', '\t', '–', '"'}, 
                     StringSplitOptions.RemoveEmptyEntries));
         }
     }
-
 }

@@ -27,6 +27,7 @@ namespace TagsCloudVisualization
         [Test]
         public void TagMaker_ShouldReturnTagWithCorrectProperties()
         {
+            
             fontSizeMakerMock.Setup(x => x.GetFontSizeByFreq(It.IsAny<int>(), It.IsAny<int>()))
                 .Returns(80);
             layouterMock.Setup(x => x.PutNextRectangle(It.IsAny<Size>()))
