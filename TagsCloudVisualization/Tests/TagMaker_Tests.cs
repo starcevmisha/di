@@ -12,6 +12,7 @@ namespace TagsCloudVisualization
     {
         private Mock<IFontSizeMaker> fontSizeMakerMock;
         private Mock<ICloudLayouter> layouterMock;
+        private Mock<IExiter> exiter;
         private TagMaker tagMaker;
 
         [SetUp]
@@ -19,7 +20,8 @@ namespace TagsCloudVisualization
         {
             fontSizeMakerMock = new Mock<IFontSizeMaker>();
             layouterMock = new Mock<ICloudLayouter>();
-            tagMaker = new TagMaker(layouterMock.Object, fontSizeMakerMock.Object, "Tahoma");
+            
+            tagMaker = new TagMaker(layouterMock.Object, exiter.Object,fontSizeMakerMock.Object, "Tahoma");
         }
 
         [Test]

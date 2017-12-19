@@ -25,6 +25,7 @@ namespace TagsCloudVisualization
             container.RegisterType<CircularCloudLayouter>()
                 .As<ICloudLayouter>()
                 .WithParameter("cloudCenter", cloudCenter);
+            container.RegisterType<Exiter>().As<IExiter>();
             container.RegisterType<WordsAnalyzer>()
                 .WithParameters(new List<Parameter>(){
                     new NamedParameter("count", options.Count),

@@ -13,10 +13,12 @@ namespace TagsCloudVisualization
         private readonly int minLength;
         private readonly IBoringWordDeterminer boringWordDeterminer;
         private readonly IReader reader;
+        private readonly IExiter exiter;
 
         public WordsAnalyzer(
             IBoringWordDeterminer boringWordDeterminer,
             IReader reader,
+            IExiter exiter,
             int count,
             int minLength = 0)
         {
@@ -24,13 +26,14 @@ namespace TagsCloudVisualization
             this.minLength = minLength;
             this.boringWordDeterminer = boringWordDeterminer;
             this.reader = reader;
+            this.exiter = exiter;
         }
 
         public Dictionary<string, int> GetWordsFrequensy()
         {
             var hunspell = Result.Of(() => new Hunspell("dictionaries/en_US.aff", "dictionaries/en_US.dic"));
             if (!hunspell.IsSuccess)
-                Exiter.ExitWithError(hunspell.Error);
+                exiter.ExitWithError(hunspell.Error);
             using(hunspell.Value)
             {
                 return reader.ReadWords()

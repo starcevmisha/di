@@ -1,10 +1,11 @@
 ﻿using System;
+using Castle.Core.Resource;
 
 namespace TagsCloudVisualization
 {
-    public class Exiter
+    public class Exiter : IExiter
     {
-        public static void ExitWithError(string errorMessage)
+        public void ExitWithError(string errorMessage)
         {
             Console.WriteLine(errorMessage);
             Console.WriteLine("\nPress ESC to exit");

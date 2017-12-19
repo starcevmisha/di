@@ -89,6 +89,7 @@
     <Compile Include="IBitmapViewer.cs" />
     <Compile Include="IBoringWordDeterminer.cs" />
     <Compile Include="ICloudLayouter.cs" />
+    <Compile Include="IExiter.cs" />
     <Compile Include="ITextAnalyzer.cs" />
     <Compile Include="IFontSizeMaker.cs" />
     <Compile Include="IReader.cs" />
