@@ -83,6 +83,7 @@
     <Compile Include="CircularCloudLayouter.cs" />
     <Compile Include="Exiter.cs" />
     <Compile Include="FileReader.cs" />
+    <Compile Include="FileReader_Should.cs" />
     <Compile Include="Helpers\Result.cs" />
     <Compile Include="Helpers\Vector.cs" />
     <Compile Include="Helpers\VectorExtensions.cs" />
