@@ -13,6 +13,7 @@ namespace TagsCloudVisualization
     {
         private Mock<IBoringWordDeterminer> mockBoringWord;
         private Mock<IReader> mockReader;
+        private Mock<IExiter> exiter;
         private List<string> input;
         private List<string> stopList;
         private WordsAnalyzer wordsAnalyzer;
@@ -23,7 +24,7 @@ namespace TagsCloudVisualization
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             mockBoringWord = new Mock<IBoringWordDeterminer>();
             mockReader = new Mock<IReader>();
-            wordsAnalyzer = new WordsAnalyzer(mockBoringWord.Object, mockReader.Object, 50);
+            wordsAnalyzer = new WordsAnalyzer(mockBoringWord.Object, mockReader.Object, exiter.Object, 50);
             input = new List<string>() {"Where", "iS", "my", "Mind", "Where", "Is"};
             stopList = new List<string>() {"is", "my", "the"};
         }
@@ -77,7 +78,7 @@ namespace TagsCloudVisualization
             };
             var minLength = 3;
             var actual = new WordsAnalyzer(
-                mockBoringWord.Object, mockReader.Object, 50, minLength).GetWordsFrequensy();
+                mockBoringWord.Object, mockReader.Object,exiter.Object, 50, minLength).GetWordsFrequensy();
             actual.ShouldBeEquivalentTo(expected);    
         }
 
@@ -97,7 +98,7 @@ namespace TagsCloudVisualization
                 .Returns(input1);
             var count = 4;
             var actual = new WordsAnalyzer(
-                mockBoringWord.Object, mockReader.Object, count).GetWordsFrequensy();
+                mockBoringWord.Object, mockReader.Object, exiter.Object, count).GetWordsFrequensy();
             var expected = new Dictionary<string, int>()
             {
                 {"hello", 7},

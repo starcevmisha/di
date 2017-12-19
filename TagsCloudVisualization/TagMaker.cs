@@ -9,14 +9,17 @@ namespace TagsCloudVisualization
     public class TagMaker : ITagMaker
     {
         private readonly ICloudLayouter layouter;
+        private readonly IExiter exiter;
         private readonly IFontSizeMaker fontSizeMaker;
         private readonly string fontName;
 
-        public TagMaker(ICloudLayouter layouter, 
+        public TagMaker(ICloudLayouter layouter,
+            IExiter exiter,
             IFontSizeMaker fontSizeMaker, 
             string fontName)
         {
             this.layouter = layouter;
+            this.exiter = exiter;
             this.fontSizeMaker = fontSizeMaker;
             this.fontName = fontName;
         }
@@ -28,7 +31,7 @@ namespace TagsCloudVisualization
             var maxfreq = frequencyDict.Values.Max();
             var fontFamily = Result.Of(() => new FontFamily(fontName));
             if(!fontFamily.IsSuccess)
-                Exiter.ExitWithError(fontFamily.Error);
+                exiter.ExitWithError(fontFamily.Error);
             
             foreach (var word in frequencyDict)
             {

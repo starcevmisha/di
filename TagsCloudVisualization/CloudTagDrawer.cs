@@ -13,6 +13,7 @@ namespace TagsCloudVisualization
         private readonly IWordsAnalyzer wordsAnalyzer;
         private readonly ITagMaker tagMaker;
         private readonly IBitmapViewer bitmapViewer;
+        private readonly IExiter exiter;
         private readonly int height;
         private readonly int width;
         private readonly string outputFilename;
@@ -21,6 +22,7 @@ namespace TagsCloudVisualization
             IWordsAnalyzer wordsAnalyzer,
             ITagMaker tagMaker,
             IBitmapViewer bitmapViewer,
+            IExiter exiter,
             int height,
             int width,
             string outputFilename
@@ -29,6 +31,7 @@ namespace TagsCloudVisualization
             this.wordsAnalyzer = wordsAnalyzer;
             this.tagMaker = tagMaker;
             this.bitmapViewer = bitmapViewer;
+            this.exiter = exiter;
             this.height = height;
             this.width = width;
             this.outputFilename = outputFilename;
@@ -41,7 +44,7 @@ namespace TagsCloudVisualization
             
             var bitmap = Result.Of(() =>DrawTagsOnBitmap(tagRectangles));
             if (!bitmap.IsSuccess)
-                Exiter.ExitWithError(bitmap.Error);
+                exiter.ExitWithError(bitmap.Error);
             bitmapViewer.View(bitmap.Value);
         }
 
@@ -54,7 +57,6 @@ namespace TagsCloudVisualization
             using (var g = Graphics.FromImage(bitmap))
             {
                 g.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
-                var selPen = new Pen(Color.Blue);
                 var selBrush = new SolidBrush(Color.Black);
                 foreach (var tag in tagRectangles)
                 {

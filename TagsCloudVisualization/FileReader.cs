@@ -11,17 +11,19 @@ namespace TagsCloudVisualization
     public class FileReader : IReader
     {
         private readonly string filename;
+        private readonly IExiter exiter;
 
-        public FileReader(string filename)
+        public FileReader(string filename, IExiter exiter)
         {
             this.filename = filename;
+            this.exiter = exiter;
         }
 
         public IEnumerable<string> ReadWords()
         {
             var file = Result.Of(()=>File.ReadLines(filename));
             if (!file.IsSuccess)
-                Exiter.ExitWithError(file.Error);
+                exiter.ExitWithError(file.Error);
             
             return file.Value
                 .SelectMany(line => line.Split(
