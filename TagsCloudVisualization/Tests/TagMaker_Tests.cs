@@ -12,31 +12,43 @@ namespace TagsCloudVisualization
     {
         private Mock<IFontSizeMaker> fontSizeMakerMock;
         private Mock<ICloudLayouter> layouterMock;
-        private Mock<IExiter> exiter;
+        private Mock<IExiter> exiterMock;
         private TagMaker tagMaker;
+        private Dictionary<string, int> frequencyDict;
 
         [SetUp]
         public void SetUp()
         {
             fontSizeMakerMock = new Mock<IFontSizeMaker>();
             layouterMock = new Mock<ICloudLayouter>();
-            
-            tagMaker = new TagMaker(layouterMock.Object, exiter.Object,fontSizeMakerMock.Object, "Tahoma");
+            exiterMock = new Mock<IExiter>();
+            tagMaker = new TagMaker(layouterMock.Object, exiterMock.Object,fontSizeMakerMock.Object, "Tahoma");
+            frequencyDict = new Dictionary<string, int>()
+            {
+                {"test", 5}
+            };
         }
 
         [Test]
-        public void TagMaker_ShouldReturnTagWithCorrectProperties()
+        public void Fail_WhenUnrecognizedFont()
         {
+            var actualError = "";
+            exiterMock.Setup(x => x.ExitWithError(It.IsAny<string>()))
+                .Callback<string>(er => actualError = er);
+            var expectedError = "Шрифт 'NotExistFont' не найден.";      
             
+            var failTagMaker = new TagMaker(layouterMock.Object, exiterMock.Object, fontSizeMakerMock.Object, "NotExistFont");
+
+            failTagMaker.MakeTagRectangles(frequencyDict);
+            actualError.Should().Be(expectedError);
+        }
+        [Test]
+        public void TagMaker_ShouldReturnTagWithCorrectProperties()
+        {          
             fontSizeMakerMock.Setup(x => x.GetFontSizeByFreq(It.IsAny<int>(), It.IsAny<int>()))
                 .Returns(80);
             layouterMock.Setup(x => x.PutNextRectangle(It.IsAny<Size>()))
                 .Returns((Size size) => new Rectangle(new Point(10, 10), size));
-
-            var frequencyDict = new Dictionary<string, int>()
-            {
-                {"test", 5}
-            };
 
             var actualTag = tagMaker.MakeTagRectangles(frequencyDict).ToList()[0];
 

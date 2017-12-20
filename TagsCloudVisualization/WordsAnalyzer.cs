@@ -33,7 +33,11 @@ namespace TagsCloudVisualization
         {
             var hunspell = Result.Of(() => new Hunspell("dictionaries/en_US.aff", "dictionaries/en_US.dic"));
             if (!hunspell.IsSuccess)
+            {
                 exiter.ExitWithError(hunspell.Error);
+                return new Dictionary<string, int>();
+            }
+
             using(hunspell.Value)
             {
                 return reader.ReadWords()

@@ -121,7 +121,7 @@ namespace TagsCloudVisualization
             for (var i = 0; i < 100; i++)
                 layout.PutNextRectangle(new Size(10, 10));
 
-            PairwiseIntersection(layout.Rectangles.ToList()).Should().BeTrue();
+            PairwiseIntersection(layout.Rectangles.ToList()).Should().BeFalse();
         }
 
         [Test, Timeout(1000)]

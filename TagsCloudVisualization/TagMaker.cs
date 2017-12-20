@@ -2,7 +2,10 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
- using TagsCloudVisualization.Helpers;
+using NUnit.Framework;
+using TagsCloudVisualization.Helpers;
+using Moq;
+
 
 namespace TagsCloudVisualization
 {
@@ -29,10 +32,14 @@ namespace TagsCloudVisualization
         {
             var tagsDict = new Dictionary<Rectangle, (string, Font)>();
             var maxfreq = frequencyDict.Values.Max();
-            var fontFamily = Result.Of(() => new FontFamily(fontName));
-            if(!fontFamily.IsSuccess)
-                exiter.ExitWithError(fontFamily.Error);
             
+            var fontFamily = Result.Of(() => new FontFamily(fontName));
+            if (!fontFamily.IsSuccess)
+            {
+                exiter.ExitWithError(fontFamily.Error);
+                return new Dictionary<Rectangle, (string, Font)>();
+            }
+
             foreach (var word in frequencyDict)
             {
                 var font = new Font(fontFamily.Value, fontSizeMaker.GetFontSizeByFreq(maxfreq, word.Value),
@@ -43,4 +50,6 @@ namespace TagsCloudVisualization
             return tagsDict;
         }
     }
+
+   
 }
