@@ -29,7 +29,7 @@ namespace TagsCloudVisualization
             exiter.Setup(x => x.ExitWithError(It.IsAny<string>()))
                 .Callback<string>(er => actualError = er);
             new FileReader(path, exiter.Object).ReadWords().FirstOrDefault();
-
+            
             expected.IsMatch(actualError).Should().BeTrue();
         }
     }
