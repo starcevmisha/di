@@ -5,7 +5,7 @@ using FluentAssertions;
 using Moq;
 using NUnit.Framework;
 
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.Tests
 {
     [TestFixture]
     public class TagMaker_Mock

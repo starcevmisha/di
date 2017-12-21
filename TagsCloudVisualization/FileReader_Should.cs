@@ -31,6 +31,7 @@ namespace TagsCloudVisualization
             new FileReader(path, exiter.Object).ReadWords().FirstOrDefault();
             
             expected.IsMatch(actualError).Should().BeTrue();
+            
         }
     }
 }
