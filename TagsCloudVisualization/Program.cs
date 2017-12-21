@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
 using Autofac;
 using Autofac.Core;
 using CommandLine;
@@ -38,8 +34,6 @@ namespace TagsCloudVisualization
             container.RegisterType<BoringWordsDeterminer>()
                 .As<IBoringWordDeterminer>();
             container.RegisterType<BitmapViewerToForm>().As<IBitmapViewer>();
-//            container.RegisterType<BitmapViewerToFile>().As<IBitmapViewer>()
-//                .WithParameter("filename", options.OutputFile);
             
             container.RegisterType<CloudTagDrawer>().AsSelf()
                 .WithParameter("width", options.Width)
