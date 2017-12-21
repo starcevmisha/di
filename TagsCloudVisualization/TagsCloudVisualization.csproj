@@ -81,16 +81,16 @@
     <Compile Include="BitmapViewerToForm.cs" />
     <Compile Include="BoringWordsDeterminer.cs" />
     <Compile Include="CircularCloudLayouter.cs" />
-    <Compile Include="Exiter.cs" />
     <Compile Include="FileReader.cs" />
     <Compile Include="FileReader_Should.cs" />
+    <Compile Include="Helpers\Exiter.cs" />
+    <Compile Include="Helpers\IExiter.cs" />
     <Compile Include="Helpers\Result.cs" />
     <Compile Include="Helpers\Vector.cs" />
     <Compile Include="Helpers\VectorExtensions.cs" />
     <Compile Include="IBitmapViewer.cs" />
     <Compile Include="IBoringWordDeterminer.cs" />
     <Compile Include="ICloudLayouter.cs" />
-    <Compile Include="IExiter.cs" />
     <Compile Include="ITextAnalyzer.cs" />
     <Compile Include="IFontSizeMaker.cs" />
     <Compile Include="IReader.cs" />
@@ -121,11 +121,11 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="book1.txt">
+    <Content Include="books\book1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="book2.txt" />
-    <Content Include="book3.txt">
+    <Content Include="books\book2.txt" />
+    <Content Include="books\book3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="dictionaries\en_US.aff">
