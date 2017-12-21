@@ -44,7 +44,11 @@ namespace TagsCloudVisualization
             
             var bitmap = Result.Of(() =>DrawTagsOnBitmap(tagRectangles));
             if (!bitmap.IsSuccess)
+            {
                 exiter.ExitWithError(bitmap.Error);
+                return;
+            }
+
             bitmapViewer.View(bitmap.Value);
         }
 
