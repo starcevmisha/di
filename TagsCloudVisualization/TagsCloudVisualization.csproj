@@ -102,7 +102,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RectangleExteinsions.cs" />
-    <Compile Include="Tests\FileAnalyzer_GetWordsFrequency_Should.cs" />
+    <Compile Include="Tests\CloudTagDrawer_Tests.cs" />
     <Compile Include="Tests\RectangleExtensions_Tests.cs" />
     <Compile Include="Tests\TagMaker_Tests.cs" />
     <Compile Include="Tests\WordsAnalyzer_Tests.cs" />
