@@ -77,43 +77,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitmapViewerToFile.cs" />
-    <Compile Include="BitmapViewerToForm.cs" />
-    <Compile Include="BoringWordsDeterminer.cs" />
-    <Compile Include="CircularCloudLayouter.cs" />
-    <Compile Include="FileReader.cs" />
-    <Compile Include="FileReader_Should.cs" />
+    <Compile Include="CloudTagDrawer\CircularCloudLayouter.cs" />
+    <Compile Include="CloudTagDrawer\CloudTagDrawer.cs" />
+    <Compile Include="CloudTagDrawer\FontSizeMaker.cs" />
+    <Compile Include="CloudTagDrawer\ICloudLayouter.cs" />
+    <Compile Include="CloudTagDrawer\IFontSizeMaker.cs" />
+    <Compile Include="CloudTagDrawer\ITagMaker.cs" />
+    <Compile Include="CloudTagDrawer\TagMaker.cs" />
     <Compile Include="Helpers\Exiter.cs" />
     <Compile Include="Helpers\IExiter.cs" />
+    <Compile Include="Helpers\RectangleExteinsions.cs" />
     <Compile Include="Helpers\Result.cs" />
     <Compile Include="Helpers\Vector.cs" />
     <Compile Include="Helpers\VectorExtensions.cs" />
-    <Compile Include="IBitmapViewer.cs" />
-    <Compile Include="IBoringWordDeterminer.cs" />
-    <Compile Include="ICloudLayouter.cs" />
-    <Compile Include="ITextAnalyzer.cs" />
-    <Compile Include="IFontSizeMaker.cs" />
-    <Compile Include="IReader.cs" />
-    <Compile Include="ITagMaker.cs" />
-    <Compile Include="TagMaker.cs" />
-    <Compile Include="FontSizeMaker.cs" />
     <Compile Include="Tests\CircularCloudLayouter_Tests.cs" />
-    <Compile Include="CloudTagDrawer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RectangleExteinsions.cs" />
     <Compile Include="Tests\CloudTagDrawer_Tests.cs" />
+    <Compile Include="Tests\FileReader_Should.cs" />
     <Compile Include="Tests\RectangleExtensions_Tests.cs" />
     <Compile Include="Tests\TagMaker_Tests.cs" />
     <Compile Include="Tests\WordsAnalyzer_Tests.cs" />
     <Compile Include="Tests\Vector_Tests.cs" />
-    <Compile Include="WordsAnalyzer.cs" />
+    <Compile Include="Viewer\BitmapViewerToFile.cs" />
+    <Compile Include="Viewer\BitmapViewerToForm.cs" />
+    <Compile Include="Viewer\IBitmapViewer.cs" />
+    <Compile Include="WordsAnalyze\BoringWordsDeterminer.cs" />
+    <Compile Include="WordsAnalyze\FileReader.cs" />
+    <Compile Include="WordsAnalyze\IBoringWordDeterminer.cs" />
+    <Compile Include="WordsAnalyze\IReader.cs" />
+    <Compile Include="WordsAnalyze\IWordsAnalyzer.cs" />
+    <Compile Include="WordsAnalyze\WordsAnalyzer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Hunspellx64.dll" />
-    <None Include="Hunspellx86.dll">
+    <None Include="Hunspellx64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Hunspellx86.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

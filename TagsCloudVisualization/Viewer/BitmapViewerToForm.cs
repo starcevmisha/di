@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.Viewer
 {
     public class BitmapViewerToForm:IBitmapViewer
     {

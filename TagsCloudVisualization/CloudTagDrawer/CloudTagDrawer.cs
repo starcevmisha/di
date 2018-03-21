@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using TagsCloudVisualization.Helpers;
+using TagsCloudVisualization.Viewer;
+using TagsCloudVisualization.WordsAnalyze;
 
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.CloudTagDrawer
 {
     public class CloudTagDrawer
     {
@@ -63,7 +65,7 @@ namespace TagsCloudVisualization
                 foreach (var tag in tagRectangles)
                 {
                     checkCoordinates(tag.Key);
-                    g.DrawString(tag.Value.Item1, tag.Value.Item2, selBrush, tag.Key.X, tag.Key.Y);
+                    g.DrawString((string) tag.Value.Item1, (Font) tag.Value.Item2, (Brush) selBrush, (float) tag.Key.X, tag.Key.Y);
                 }
             }
             return bitmap;

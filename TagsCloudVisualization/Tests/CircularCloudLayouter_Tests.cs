@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using TagsCloudVisualization.CloudTagDrawer;
 
 namespace TagsCloudVisualization
 {
@@ -126,7 +127,7 @@ namespace TagsCloudVisualization
         [Test, Timeout(1000)]
         public void Timeout_AddALotOfRectangles()
         {
-            for (var i = 1; i < 400; i++)
+            for (var i = 1; i < 300; i++)
               layout.PutNextRectangle(new Size(10, 10));
         }
 
