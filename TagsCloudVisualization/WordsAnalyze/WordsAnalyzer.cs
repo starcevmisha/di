@@ -5,7 +5,7 @@ using NHunspell;
 using NUnit.Framework;
 using TagsCloudVisualization.Helpers;
 
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.WordsAnalyze
 {
     public class WordsAnalyzer : IWordsAnalyzer
     {

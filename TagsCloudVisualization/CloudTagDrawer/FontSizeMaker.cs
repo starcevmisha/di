@@ -1,4 +1,4 @@
-﻿namespace TagsCloudVisualization
+﻿namespace TagsCloudVisualization.CloudTagDrawer
 {
     public class FontSizeMaker :IFontSizeMaker
     {

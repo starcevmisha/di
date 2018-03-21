@@ -4,6 +4,7 @@ using System.IO;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using TagsCloudVisualization.WordsAnalyze;
 
 namespace TagsCloudVisualization.Tests
 {

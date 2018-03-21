@@ -3,6 +3,9 @@ using System.Drawing;
 using FluentAssertions;
 using NUnit.Framework;
 using Moq;
+using TagsCloudVisualization.CloudTagDrawer;
+using TagsCloudVisualization.Viewer;
+using TagsCloudVisualization.WordsAnalyze;
 
 namespace TagsCloudVisualization.Tests
 {
@@ -12,7 +15,7 @@ namespace TagsCloudVisualization.Tests
         private Mock<ITagMaker> tagMakerMock;
         private Mock<IBitmapViewer> bitmapViewerMock;
         private Mock<IExiter> exiterMock;
-        private CloudTagDrawer cloudTagDrawer;
+        private CloudTagDrawer.CloudTagDrawer cloudTagDrawer;
 
         [SetUp]
         public void SetUp()
@@ -21,7 +24,7 @@ namespace TagsCloudVisualization.Tests
             tagMakerMock = new Mock<ITagMaker>();
             bitmapViewerMock = new Mock<IBitmapViewer>();
             exiterMock = new Mock<IExiter>();
-            cloudTagDrawer = new CloudTagDrawer(wordsAnalyzerMock.Object, 
+            cloudTagDrawer = new CloudTagDrawer.CloudTagDrawer(wordsAnalyzerMock.Object, 
                 tagMakerMock.Object, 
                 bitmapViewerMock.Object, 
                 exiterMock.Object,

@@ -1,11 +1,10 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using TagsCloudVisualization.Helpers;
 
-
-namespace TagsCloudVisualization
+namespace TagsCloudVisualization.CloudTagDrawer
 {
     public class TagMaker : ITagMaker
     {

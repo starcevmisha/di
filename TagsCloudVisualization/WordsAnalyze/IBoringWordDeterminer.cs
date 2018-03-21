@@ -1,4 +1,4 @@
-﻿namespace TagsCloudVisualization
+﻿namespace TagsCloudVisualization.WordsAnalyze
 {
     public interface IBoringWordDeterminer
     {
